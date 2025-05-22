@@ -6,7 +6,8 @@ from api import modele,dependancy,utils,oauth
 route = APIRouter(tags=["Authentication"])
 
 @route.post('/login')
-def login_user(user_credential:OAuth2PasswordRequestForm = Depends(),db:Session=Depends(dependancy.get_db)):
+def login_user(user_credential:OAuth2PasswordRequestForm = Depends(),
+               db:Session=Depends(dependancy.get_db)):
 
     user = db.query(modele.ToDo).filter(modele.ToDo.email == user_credential.username).first()
 
